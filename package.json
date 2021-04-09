@@ -1,12 +1,12 @@
 {
   "name": "node-0318",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "main": "index.js",
   "repository": "https://github.com/KunoiSayami/1092-node-0318.git",
   "author": "KunoiSayami",
   "license": "AGPL-3.0+",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "npx tsc -b && node app.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

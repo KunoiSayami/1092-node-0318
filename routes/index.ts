@@ -8,7 +8,7 @@ const config = require(path.resolve(process.cwd(), 'config.json'));
 
 
 router.get('/', (req, res) => {
-    res.render('index.html');
+    res.render('index.html', {title: 'index'});
 });
 
 router.get('/post', (req, res) => {

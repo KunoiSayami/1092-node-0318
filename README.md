@@ -1,5 +1,9 @@
 # 1092 0318 node.js
 
+## Special Thanks
+
+Special thanks to [@undefined-moe](https://github.com/undefined-moe), who helped me configure the typescript.
+
 ## License
 
 [![](https://www.gnu.org/graphics/agplv3-155x51.png)](https://www.gnu.org/licenses/agpl-3.0.txt)
