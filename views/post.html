@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block head %}
+	<script>
+		let request_clients = function() {
+			$.ajax({
+				url:"/post",
+				method: "POST",
+				data: {},
+				datatype: "json",
+				success: function(data){
+						$('#result').val(data.result);
+					}
+			});
+		}
+
+		})		
+	</script>
+{% endblock %}
+
+{% block body %}
+<div  style="text-align:center;">
+	<h2 class="bg-primary"><b>Client list</b></h2>
+
+	<table style="font-size:large; margin-left:auto; margin-right:auto;">
+	</table>
+	<button id="btn1" class="btn btn-success btn-lg"><b>Refresh</b></button><br /><br />
+	<button id="btnhome" onclick="window.location.href='/'" class="btn btn-info btn-sm"><b>Return to index</b></button>
+	
+</div>
+{% endblock %}
