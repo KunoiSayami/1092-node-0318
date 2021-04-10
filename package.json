@@ -1,6 +1,6 @@
 {
   "name": "node-0318",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "main": "index.js",
   "repository": "https://github.com/KunoiSayami/1092-node-0318.git",
   "author": "KunoiSayami",
@@ -10,6 +10,8 @@
     "start_now": "node app.js"
   },
   "dependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "cookie-parser": "~1.4.4",
     "express": "^4.17.1",
     "http-errors": "~1.6.3",

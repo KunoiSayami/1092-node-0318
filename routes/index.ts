@@ -4,33 +4,39 @@ import superagent from 'superagent';
 
 const router = express.Router();
 
+// Load configure file from home path
 const config = require(path.resolve(process.cwd(), 'config.json'));
 
 
+// Process route GET home page
 router.get('/', (req, res) => {
     res.render('index.html', {title: 'index'});
 });
 
+// Process route GET /clients
 router.get('/clients', (req, res) => {
     res.render('clients.html', { title: 'clients' });
     //res.render('index.html');
 });
 
+// Process route GET /sqrt
 router.get('/sqrt', (req, res) => {
     res.render('sqrt.html', { title: 'sqrt' });
 });
 
+
+// Process route POST /clients
 router.post('/clients', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
     const response = await superagent
         .post(config.remote.address)
         // https://stackoverflow.com/a/610415
         .set('Authorization', `Bearer ${config.remote.token}`)
         .send({action: 'query_online'});
-    console.log(response.body);
+    //console.log(response.body);
     res.status(response.status).send(response.body);
 });
 
+// Process route POST /sqrt/:num
 router.post('/sqrt/:num', (req, res) => {
 
     let num = Number(req.params.num);
@@ -53,7 +59,7 @@ router.post('/sqrt/:num', (req, res) => {
 
     let response = {status: status, result: result};
 
-    console.debug(response);
+    //console.debug(response);
 
     res.status(status).send(response);
 });

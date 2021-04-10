@@ -11,19 +11,23 @@ const config = require(path.resolve(process.cwd(), 'config.json'));
 
 const app = express();
 
+// Check server is running under development mode
 let dev_mode = process.argv.includes('--dev');
 if (dev_mode) {
     console.debug('Server running in dev mode');
 }
+
 nunjucks.configure('views', {
     autoescape: true,
     express: app,
     noCache: dev_mode,
 });
-app.use(logger('dev'));
+if (process.argv.includes('--disable-logger')) {
+    app.use(logger('dev'));
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -40,5 +44,13 @@ app.use((err, req, res, next) => {
     res.render('error');
 });
 
-app.listen(config.server.port || process.env.SERVER_PORT || 8000);
+function stop() {
+    server.close();
+}
+
+// Set listen port from configure file OR environment OR default 8000
+let server = app.listen(config.server.port || process.env.SERVER_PORT || 8000);
+module.exports
 export default app;
+//export let stop = server.close;
+export {app, stop};

@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
+{% extends "base.html" %}
+{% block head %}
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+{% endblock %}
+
+{% block body %}
     <h1>{{title}}</h1>
     <p>Welcome to {{title}}</p>
-  </body>
-</html>
+    {#<p><a href="clients">Clients list</a>  <a href="sqrt">Sqrt calculate</a></p>#}
+{% endblock %}
