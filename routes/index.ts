@@ -11,8 +11,8 @@ router.get('/', (req, res) => {
     res.render('index.html', {title: 'index'});
 });
 
-router.get('/post', (req, res) => {
-    res.render('post.html', { title: 'feature1' });
+router.get('/clients', (req, res) => {
+    res.render('clients.html', { title: 'clients' });
     //res.render('index.html');
 });
 
@@ -20,7 +20,7 @@ router.get('/sqrt', (req, res) => {
     res.render('sqrt.html', { title: 'sqrt' });
 });
 
-router.post('/post', async (req, res) => {
+router.post('/clients', async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     const response = await superagent
         .post(config.remote.address)
@@ -28,8 +28,8 @@ router.post('/post', async (req, res) => {
         .set('Authorization', `Bearer ${config.remote.token}`)
         .send({action: 'query_online'});
     console.log(response.body);
-    res.sendStatus(200);
-}); 
+    res.status(response.status).send(response.body);
+});
 
 router.post('/sqrt/:num', (req, res) => {
 
@@ -37,7 +37,7 @@ router.post('/sqrt/:num', (req, res) => {
 
     let status = 200;
     let result = "";
-    
+
     if (Number.isNaN(num)) {
         status = 400;
         result = "Please input a vaild number";

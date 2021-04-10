@@ -7,12 +7,18 @@ import nunjucks from 'nunjucks';
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const config = require(path.resolve(process.cwd(), 'config.json'));
 
 const app = express();
+
+let dev_mode = process.argv.includes('--dev');
+if (dev_mode) {
+    console.debug('Server running in dev mode');
+}
 nunjucks.configure('views', {
     autoescape: true,
     express: app,
-    noCache: true,
+    noCache: dev_mode,
 });
 app.use(logger('dev'));
 app.use(express.json());
@@ -34,5 +40,5 @@ app.use((err, req, res, next) => {
     res.render('error');
 });
 
-app.listen(8000);
+app.listen(config.server.port || process.env.SERVER_PORT || 8000);
 export default app;

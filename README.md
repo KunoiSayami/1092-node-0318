@@ -1,5 +1,25 @@
 # 1092 0318 node.js
 
+## Setup server
+
+This demo should used with [probe-server](https://github.com/KunoiSayami/probe-server).
+
+Requirement:
+* npm
+* yarn
+
+### Initialization
+
+```
+$ yarn global add npx
+```
+
+### Start server
+
+```
+$ yarn start
+```
+
 ## Special Thanks
 
 Special thanks to [@undefined-moe](https://github.com/undefined-moe), who helped me configure the typescript.
