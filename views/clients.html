@@ -6,35 +6,17 @@
 			text-align: center;
 		}
 	</style>
-
-	<script>
-		let request_clients = function() {
-			$.ajax({
-				url:"/clients",
-				method: "POST",
-				data: {},
-				datatype: "json",
-				success: function(data){
-					let table_val = '<tr><th>client id</th><th>client name</th></tr>';
-					if (data.status == 200) {
-						data.result.forEach(element => {
-							table_val += `<tr><td>${element.uuid}</td><td>${element.hostname}</td></tr>`;
-						});
-					}
-					$('#tb_client').append(table_val);
-				}
-			});
-		}
-
-	</script>
+	<script src="javascripts/clients.js"></script>
 {% endblock %}
 
 {% block body %}
-<div  style="text-align:center;">
+<div style="text-align:center;">
 	<h2 class="bg-primary"><b>Client list</b></h2>
 
 	<table style="font-size:large; margin-left:auto; margin-right:auto; width:50%;" id="tb_client">
 	</table>
+	<br />
+	<p id="last_refresh"></p>
 	<button id="btn1" onclick="request_clients();" class="btn btn-success btn-lg"><b>Refresh</b></button><br /><br />
 	<button id="btnhome" onclick="window.location.href='/'" class="btn btn-info btn-sm"><b>Return to index</b></button>
 

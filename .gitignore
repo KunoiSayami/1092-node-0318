@@ -120,3 +120,4 @@ config.json
 *.js.map
 *.d.ts
 .vscode/
+!public/javascripts/*.js
