@@ -8,7 +8,7 @@
   "scripts": {
     "start": "npx tsc -b && node server.js",
     "start_now": "node server.js",
-    "test": "jest server.test.js"
+    "test": "npx jest server.test.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
