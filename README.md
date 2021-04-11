@@ -8,6 +8,18 @@ Requirement:
 * npm
 * yarn
 
+### Configure
+
+To configure server listen port, use `SERVER_PORT` environment variables.
+
+Or, Add following configure line to `config.json`:
+
+```json
+    "server": {
+        "port": 8000
+    }
+```
+
 ### Initialization
 
 ```
