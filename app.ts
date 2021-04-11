@@ -7,7 +7,6 @@ import nunjucks from 'nunjucks';
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const config = require(path.resolve(process.cwd(), 'config.json'));
 
 const app = express();
 
@@ -22,7 +21,7 @@ nunjucks.configure('views', {
     express: app,
     noCache: dev_mode,
 });
-if (process.argv.includes('--disable-logger')) {
+if (!(process.argv.includes('--disable-logger') || process.env.LOGGER_DISABLED)) {
     app.use(logger('dev'));
 }
 app.use(express.json());
@@ -44,13 +43,7 @@ app.use((err, req, res, next) => {
     res.render('error');
 });
 
-function stop() {
-    server.close();
-}
 
 // Set listen port from configure file OR environment OR default 8000
-let server = app.listen(config.server.port || process.env.SERVER_PORT || 8000);
 module.exports
 export default app;
-//export let stop = server.close;
-export {app, stop};

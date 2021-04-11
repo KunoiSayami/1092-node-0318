@@ -10,6 +10,6 @@
         "strictBindCallApply": true,
         "experimentalDecorators": true
     },
-    "include":["**/*.ts", "test.ts"],
+    "include":["**/*.ts", "server.ts", "server.test.ts"],
     "exclude":["node_modules"]
 }
