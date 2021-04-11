@@ -1,3 +1,22 @@
+/*
+ ** Copyright (C) 2021 KunoiSayami
+ **
+ ** This file is part of 1092-node-0318 under
+ ** the AGPL v3 License: https://www.gnu.org/licenses/agpl-3.0.txt
+ **
+ ** This program is free software: you can redistribute it and/or modify
+ ** it under the terms of the GNU Affero General Public License as published by
+ ** the Free Software Foundation, either version 3 of the License, or
+ ** any later version.
+ **
+ ** This program is distributed in the hope that it will be useful,
+ ** but WITHOUT ANY WARRANTY; without even the implied warranty of
+ ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ ** GNU Affero General Public License for more details.
+ **
+ ** You should have received a copy of the GNU Affero General Public License
+ ** along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
 import express from 'express';
 import path from 'path';
 import superagent from 'superagent';
@@ -6,11 +25,12 @@ const router = express.Router();
 
 // Load configure file from home path
 const config = require(path.resolve(process.cwd(), 'config.json'));
+const package_config = require(path.resolve(process.cwd(), 'package.json'));
 
 
 // Process route GET home page
 router.get('/', (req, res) => {
-    res.render('index.html', {title: 'index'});
+    res.render('index.html', {title: 'Index', repo_url: package_config.repository || '', author: package_config.author || ''});
 });
 
 // Process route GET /clients
@@ -44,6 +64,7 @@ router.post('/sqrt/:num', (req, res) => {
     let status = 200;
     let result = "";
 
+    // Check number integrity
     if (Number.isNaN(num)) {
         status = 400;
         result = "Please input a vaild number";
